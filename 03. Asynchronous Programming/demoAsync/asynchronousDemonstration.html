@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="async.css">
+    <title>Asynchronous Demonstration</title>
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="left-content">
+            <div class="exec-stack">
+                <p style="text-align: center ;">Execution Stack</p>
+                <span id="func">This function</span>
+                <span id="func-event">
+                    <div>
+                        <span>Event</span>
+                        <button>Click</button>
+                    </div>
+                </span>
+                <div style="margin: 5px">
+                    <input type="text" placeholder="Add function name">
+                    <input type="button" value="Add func">
+                </div>
+                <div style="margin: 5px;">
+                    <input type="text" placeholder="Add with event listener">
+                    <input type="button" value="Add">
+                </div>
+            </div>
+        </div>
+        <div class="right-content">
+            <div class="api-reg">
+                <p>Browser APIs</p>
+            </div>
+            <div class="event-queue">
+                <p>Event Queue</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standar API for AJAX</title>
+</head>
+<h1>XMLHttpRequest - Standard API for AJAX</h1>
+
+<body>
+    <button id="load">Load Repos</button>
+    <textarea id="res"></textarea>
+
+    <script>
+        let button = document.querySelector("#load");
+        button.addEventListener('click', loadRepos);
+
+        async function loadRepos() {
+            try {
+                const res = await fetch('https://swapi.dev/api/peopledds');
+                if (res.ok == false){
+                    throw new Error ('Request error!')
+                }
+                const data = await res.text();
+                document.getElementById('res').value = data;
+                
+            } catch (error) {
+               alert(error.message) 
+            }
+
+        }
+    </script>
+</body>
+
+</html>

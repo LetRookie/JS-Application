@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standar API for AJAX</title>
+</head>
+<h1>XMLHttpRequest - Standard API for AJAX</h1>
+
+<body>
+    <button id="load">Load Repos</button>
+    <textarea id="res"></textarea>
+
+    <script>
+        let button = document.querySelector("#load");
+        button.addEventListener('click', loadRepos);
+
+        function loadRepos() {
+            let url = 'https://api.github.com/users/testnakov/repos';
+            const httpRequest = new XMLHttpRequest();
+            httpRequest.addEventListener('readystatechange', ajaxHandler);
+            httpRequest.open("GET", url);
+            httpRequest.send();
+
+            function ajaxHandler() {
+                if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                    const data = JSON.parse(httpRequest.responseText);
+                    document.getElementById("res").value = JSON.stringify(data, null, 2);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

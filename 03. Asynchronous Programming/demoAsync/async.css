@@ -1,0 +1,60 @@
+.main-content{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+
+.left-content{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.right-content{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+
+.exec-stack{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    border: 2px solid black;
+    padding: 5px;
+    margin-top: 5px
+}
+
+span#func{
+    display: inline;
+    text-align: center;
+    color: brown;
+    border: 1px solid rgb(98, 58, 220);
+    border-radius: 3px; 
+    margin: 5px;
+}
+
+span#func-event{
+    display: inline-block;
+    text-align: center;
+    color: brown;
+    border: 1px solid rgb(98, 58, 220);
+    border-radius: 3px; 
+    margin: 5px;
+}
+
+
+
+.api-reg{
+    border: 2px solid rgb(174, 0, 0);
+    padding: 5px;
+    margin-top: 5px
+}
+
+.event-queue{
+    border: 2px solid rgb(0, 116, 14);
+    padding: 5px;
+    margin-top: 5px
+}

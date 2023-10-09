@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Post Request</title>
+</head>
+<body>
+    <p id="text"></p>
+    <script>
+        const data = {
+    "body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis maiores eligendi quos quidem ex numquam hic. Eos quos similique voluptates accusamus quae voluptas magni ad a ipsum, quia enim debitis cumque quibusdam exercitationem architecto sint nostrum dolorum dolor repudiandae nulla deserunt, dolorem itaque!",
+    "title": "Second Title"
+};
+
+async function start() {
+    const response = await fetch('http://localhost:3030/jsonstore/blog/posts', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application / json'
+        },
+        body: JSON.stringify(data)
+    });
+    const resData = response.json();
+    //console.log(resData);
+}
+start();
+
+async function response(){
+    const ans = await fetch('http://localhost:3030/jsonstore/blog/posts');
+    const ansData = await ans.json();
+    
+    document.getElementById('text').textContent = JSON.stringify(ansData);
+}
+response();
+    </script>
+</body>
+</html>

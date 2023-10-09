@@ -1,0 +1,35 @@
+switch (condition) {
+        case 'Sunny': weatherSymbol = '&#x2600'; break;
+        case 'Partly sunny': weatherSymbol = '&#x26C5'; break; 
+        case 'Overcast': weatherSymbol = '&#x2601'; break; 
+        case 'Rain': weatherSymbol = '&#x2614'; break;
+    }
+
+    //Current condition-DOM creation
+    let forecasts = document.createElement('div');
+    forecasts.setAttribute('class', 'forecasts');
+    current.appendChild(forecasts);
+    let conditionSymbol = document.createElement('span');
+    conditionSymbol.setAttribute('class', 'condition symbol')
+    conditionSymbol.innerHTML = weatherSymbol;
+    forecasts.appendChild(conditionSymbol);
+    let spanGroup = document.createElement('span');
+    spanGroup.setAttribute('class', 'condition');
+    forecasts.appendChild(spanGroup);
+
+   Object.values(currentForecast).forEach(e => {
+    const castInfo = document.createElement('span');
+    castInfo.textContent = e;
+    spanGroup.setAttribute('class' , 'forecast-data');
+    spanGroup.appendChild(castInfo);
+   })
+
+   
+   
+
+    
+     
+
+    forecast.appendChild(forecasts);
+    forecast.style.display = 'block';
+

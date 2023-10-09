@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        form>* {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <button>Make Authorized Request</button>
+    <h2>Reister</h2>
+    <form id="register">
+        <div>
+            <input type="text" name="email">
+            <input type="password" name="password">
+            <input type="password" name="repassword">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+    <h2>Log In</h2>
+    <form id="login">
+        <div>
+            <input type="text" name="email">
+            <input type="password" name="password">
+            <input type="submit" value="Login">
+        </div>
+    </form>
+
+    <script>
+        document.querySelector('button').addEventListener('click', async () => {
+            const token = sessionStorage.getItem('accessToken');
+
+            const response = await fetch('http://localhost:3030/data/recipes', {
+                headers: {
+                    'X-Authorization': token
+                }
+            });
+            const data = await response.json();
+            console.log(data);
+        })
+        document.getElementById('register').addEventListener('submit', onRegister);
+        document.getElementById('login').addEventListener('submit', onLogin);
+
+        async function onRegister(ev) {
+            ev.preventDefault();
+
+            const formData = new FormData(ev.target);
+
+            const data = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+
+            try {
+                if (formData.get('password') != formData.get('repassword')) {
+                    throw new Error('Password must match!')
+                }
+                const response = await fetch(('http://localhost:3030/users/register'), {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'applicatio/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok == false) {
+                    const error = await response.json();
+                    throw new Error(error.message);
+                }
+
+                const resData = await response.json();
+                console.log(resData);
+                sessionStorage.setItem('accessToken', resData.accessToken);
+
+
+            } catch (error) {
+                alert(error.message)
+            }
+        }
+
+        async function onLogin(ev) {
+            ev.preventDefault();
+
+            const formData = new FormData(ev.target);
+            const data = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+
+            try {
+                const response = await fetch(('http://localhost:3030/users/login'), {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'applicatio/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                if (response.ok == false) {
+
+                    const error = await response.json();
+                    throw new Error(error.message)
+                }
+                const resData = await response.json();
+                console.log(resData);
+                sessionStorage.setItem('accessToken', resData.accessToken);
+
+
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

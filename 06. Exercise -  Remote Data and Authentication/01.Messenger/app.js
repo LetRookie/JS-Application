@@ -20,8 +20,8 @@ async function onSubmit() {
 
     await createMessage({author, content });
 
-    contentInput.velue = '';
-    list.value = '\n' + `${author}: ${content}`;
+    contentInput.value = '';
+    list.value += '\n' + `${author}: ${content}`;
 
 }
 

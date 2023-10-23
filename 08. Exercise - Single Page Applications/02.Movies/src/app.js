@@ -1,7 +1,6 @@
-import { showView } from "./router.js";
 //[x] improve HTML structure
 //[x] creata app.js module
-//[?] create router.js containing hide and display of view
+//[x] create util.js containing hide and display of view
 //[x] placeholders for all views
 
 //implement views
@@ -15,13 +14,24 @@ import { showView } from "./router.js";
 //[ ] like
 //[ ] edit
 //[ ] delete
+
+import { homePage } from "./home.js";
+import { loginPage } from "./login.js";
+import { registerPage } from "./register.js";
+import { createPage } from "./create.js";
+import { logoutPage } from "./logout.js";
+import { updateNav } from "./util.js";
+
+
+
 const routes = {
     '/': homePage,
     '/login': loginPage,
-    '/logout': logOutPage,
+    '/logout': logoutPage,
     '/register': registerPage,
     '/create' : createPage
 }
+
 document.querySelector('nav').addEventListener('click', onNavigate);
 document.querySelector('#add-movie-button a').addEventListener('click', onNavigate);
 
@@ -35,35 +45,6 @@ function onNavigate(event){
         }
     }
 }
-
-const homeSection = document.querySelector('#home-page');
-const loginSection = document.querySelector('#form-login');
-const registerSection = document.querySelector('#form-sign-up');
-const createSection = document.querySelector('#add-movie');
-const detailsSection = document.querySelector('#movie-example');
-const editSection = document.querySelector('#edit-movie');
-
-function homePage() {
-    showView(homeSection);
-}
-function loginPage() {
-    showView(loginSection);
-}
-function registerPage() {
-    showView(registerSection);
-}
-function createPage() {
-    showView(createSection);
-}
-function detailsPage() {
-    showView(detailsSection);
-}
-function editPage() {
-    showView(editSection);
-}
-function logOutPage(){
-    alert('You have logged out!')
-}
-
 //start application
+updateNav();
 homePage();

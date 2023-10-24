@@ -1,0 +1,1 @@
+In order to run the test need to install Playwright~Mocha~Chai combination..
